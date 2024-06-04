@@ -1,0 +1,132 @@
+# Plugin's Prefix
+prefix: "&7[&aKillSound&7] "
+
+# Sound
+sound:
+  gui_name: "&c[&6Select Kill Sound&c]"
+  sound_1:
+    material: IRON_INGOT
+    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    lore:
+      - "&eChance: &61.5%"
+      - ""
+      - "&7Category: &cSoundPad"
+      - "&7RightClick To unlock this soundpad"
+      - ""
+      - "&7/soundgnz"
+    sounds:
+      - "custom.one"
+      - "custom.two"
+      - "custom.three"
+      - "custom.four"
+      - "custom.five"
+      - "custom.six"
+      - "custom.seven"
+  sound_2:
+    material: IRON_INGOT
+    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    lore:
+      - "&eChance: &61.5%"
+      - ""
+      - "&7Category: &cSoundPad"
+      - "&7RightClick To unlock this soundpad"
+      - ""
+      - "&7/soundgnz"
+    sounds:
+      - "custom.one"
+      - "custom.two"
+      - "custom.three"
+      - "custom.four"
+      - "custom.five"
+      - "custom.six"
+      - "custom.seven"
+  sound_3:
+    material: IRON_INGOT
+    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    lore:
+      - "&eChance: &61.5%"
+      - ""
+      - "&7Category: &cSoundPad"
+      - "&7RightClick To unlock this soundpad"
+      - ""
+      - "&7/soundgnz"
+    sounds:
+      - "custom.one"
+      - "custom.two"
+      - "custom.three"
+      - "custom.four"
+      - "custom.five"
+      - "custom.six"
+      - "custom.seven"
+  sound_4:
+    material: IRON_INGOT
+    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    lore:
+      - "&eChance: &61.5%"
+      - ""
+      - "&7Category: &cSoundPad"
+      - "&7RightClick To unlock this soundpad"
+      - ""
+      - "&7/soundgnz"
+    sounds:
+      - "custom.one"
+      - "custom.two"
+      - "custom.three"
+      - "custom.four"
+      - "custom.five"
+      - "custom.six"
+      - "custom.seven"
+  sound_5:
+    material: IRON_INGOT
+    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    lore:
+      - "&eChance: &61.5%"
+      - ""
+      - "&7Category: &cSoundPad"
+      - "&7RightClick To unlock this soundpad"
+      - ""
+      - "&7/soundgnz"
+    sounds:
+      - "custom.one"
+      - "custom.two"
+      - "custom.three"
+      - "custom.four"
+      - "custom.five"
+      - "custom.six"
+      - "custom.seven"
+  sound_6:
+    material: IRON_INGOT
+    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    lore:
+      - "&eChance: &61.5%"
+      - ""
+      - "&7Category: &cSoundPad"
+      - "&7RightClick To unlock this soundpad"
+      - ""
+      - "&7/soundgnz"
+    sounds:
+      - "custom.one"
+      - "custom.two"
+      - "custom.three"
+      - "custom.four"
+      - "custom.five"
+      - "custom.six"
+      - "custom.seven"
+  sound_7:
+    material: IRON_INGOT
+    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    lore:
+      - "&eChance: &61.5%"
+      - ""
+      - "&7Category: &cSoundPad"
+      - "&7RightClick To unlock this soundpad"
+      - ""
+      - "&7/soundgnz"
+    sounds:
+      - "custom.one"
+      - "custom.two"
+      - "custom.three"
+      - "custom.four"
+      - "custom.five"
+      - "custom.six"
+      - "custom.seven"

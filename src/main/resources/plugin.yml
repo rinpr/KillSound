@@ -1,0 +1,10 @@
+name: KillSound
+version: 1.0
+author: Java_Rin
+main: net.java_rin.KillSound.KillSound
+api-version: 1.7.10
+commands:
+  killsound:
+    description: Main command for KillSound
+    permission: killsound.command
+    permission-message: You don't have permission to use this command!
