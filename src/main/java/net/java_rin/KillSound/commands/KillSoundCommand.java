@@ -4,7 +4,6 @@ import net.java_rin.KillSound.manager.ConfigManager;
 import net.java_rin.KillSound.manager.SoundGUI;
 import net.java_rin.KillSound.sounds.Sound1;
 import net.java_rin.KillSound.utilities.Message;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -3,6 +3,7 @@ package net.java_rin.KillSound;
 import net.java_rin.KillSound.commands.KillSoundCommand;
 import net.java_rin.KillSound.commands.KillSoundTabCompleter;
 import net.java_rin.KillSound.listeners.InventoryListeners;
+import net.java_rin.KillSound.utilities.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -28,6 +29,7 @@ public class KillSound extends JavaPlugin {
         getServer().getConsoleSender().sendMessage("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         this.saveDefaultConfig();
         this.loadDefaultConfig();
+        this.generatePlayerDataFolder();
         this.registerEvents();
         this.registerCommands();
     }
@@ -41,17 +43,17 @@ public class KillSound extends JavaPlugin {
         instance.getCommand("killsound").setTabCompleter(new KillSoundTabCompleter());
     }
 
-//    private void newPluginFolder() {
-//        File file = new File(this.getDataFolder() + File.separator + "playerdata");
-//        if (!file.exists()) {
-//            boolean dirCreated = file.mkdirs();
-//            if (dirCreated) {
-//                getServer().getConsoleSender().sendMessage("Successfully generated plugins folder!");
-//            } else {
-//                getServer().getConsoleSender().sendMessage("An error has occurred while generating plugins folder!");
-//            }
-//        }
-//    }
+    private void generatePlayerDataFolder() {
+        File file = new File(this.getDataFolder() + File.separator + "player-data");
+        if (!file.exists()) {
+            boolean dirCreated = file.mkdirs();
+            if (dirCreated) {
+                Message.send("Successfully generated plugins folder!");
+            } else {
+                Message.send("An error has occurred while generating plugins folder!");
+            }
+        }
+    }
 
     private void loadDefaultConfig() {
         if (!this.configPath.exists()) {
