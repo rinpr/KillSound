@@ -8,9 +8,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConfigManager {
 
@@ -64,24 +65,38 @@ public class ConfigManager {
         return result;
     }
 
+    /**
+     * Creates an ItemStack based on the specified configuration path.
+     * <p>
+     * Note: This method is designed for use with Bukkit API version 1.7.10.
+     *
+     * @param basePath The base path in the configuration.
+     * @return An ItemStack representing the configured material with display name and lore.
+     */
     private static ItemStack createItemStack(String basePath) {
-        String materialName = config.getString(basePath + ".material");
-        Material material = Material.matchMaterial(materialName);
-        ItemStack item = (material != null) ? new ItemStack(material) : new ItemStack(Material.STONE);
+        String itemString = config.getString(basePath + ".material");
+        ItemStack item;
+        Material material = Material.STONE;
+        if (itemString.contains(":")) {
+            String[] parts = itemString.split(":");
+            material = Material.matchMaterial(parts[0]);
+            item = new ItemStack(material, 1, (short) Integer.parseInt(parts[1]));
+        } else {
+            item = new ItemStack(material);
+        }
 
-        String displayName = config.getString(basePath + ".display_name", "Default Display Name");
+        String displayName = config.getString(basePath + ".display_name", "cant.read.display_name.value");
         List<String> lore = config.getStringList(basePath + ".lore");
 
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
             meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
 
-            List<String> coloredLore = new ArrayList<>();
-            for (String line : lore) {
-                coloredLore.add(ChatColor.translateAlternateColorCodes('&', line));
-            }
-            meta.setLore(coloredLore);
+            List<String> coloredLore = lore.stream()
+                    .map(line -> ChatColor.translateAlternateColorCodes('&', line))
+                    .collect(Collectors.toList());
 
+            meta.setLore(coloredLore);
             item.setItemMeta(meta);
         }
 
