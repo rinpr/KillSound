@@ -18,6 +18,7 @@ import java.util.UUID;
  * Manages player data for the KillSound plugin.
  */
 public class PlayerDataHolder {
+
     private static HashMap<String, PlayerData> playerData = new HashMap<>();
     private final static File dataFolder = new File(KillSound.getInstance().getDataFolder() + File.separator + "player-data");
     private static int taskId;
@@ -34,7 +35,7 @@ public class PlayerDataHolder {
                 save();
                 load();
             }
-        }, 60 * 20L, minute * 60 * 20L);
+        },ConfigManager.AUTOSAVE_INTERVAL * 60 * 20L, minute * 60 * 20L);
     }
 
     /**
@@ -106,6 +107,7 @@ public class PlayerDataHolder {
      * @param data The player data to add.
      */
     public static void add(PlayerData data) {
+        if (playerData.containsKey(data.getName())) return;
         playerData.put(data.getName(), data);
     }
 
