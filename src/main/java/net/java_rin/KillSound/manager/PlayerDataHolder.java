@@ -57,7 +57,8 @@ public class PlayerDataHolder {
 
             data_file.set("uuid", playerData.getUUID().toString());
             data_file.set("name", playerData.getName());
-            data_file.set("enabled-sound", playerData.getEnabledSound().toString());
+            data_file.set("enabled", playerData.isEnabled());
+            data_file.set("sound", playerData.getSound().toString());
 
             try {
                 data_file.save(file);
@@ -83,10 +84,11 @@ public class PlayerDataHolder {
             String uuid = file.getName().contains(".") ? file.getName().substring(0, file.getName().lastIndexOf(".")) : file.getName();
             OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString(uuid));
 
-            String soundString = raw_data.getString("enabled-sound");
+            boolean enabled = raw_data.getBoolean("enabled");
+            String soundString = raw_data.getString("sound");
             Sound sound = getSound(soundString);
 
-            PlayerData data = new PlayerData(player, sound);
+            PlayerData data = new PlayerData(player, sound, enabled);
             add(data);
         }
         Message.log("Loaded player data successfully!");

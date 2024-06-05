@@ -9,30 +9,45 @@ public class PlayerData {
     private OfflinePlayer player;
     private String name;
     private UUID uuid;
-    private Sound enabledSound;
+    private boolean isEnabled;
+    private Sound sound;
 
     public PlayerData(OfflinePlayer player) {
         this.player = player;
         this.name = player.getName();
         this.uuid = player.getUniqueId();
-        this.enabledSound = Sound.NONE;
+        this.isEnabled = false;
+        this.sound = Sound.NONE;
     }
 
     public PlayerData(OfflinePlayer player, Sound sound) {
         this.player = player;
         this.name = player.getName();
         this.uuid = player.getUniqueId();
-        this.enabledSound = sound;
+        this.isEnabled = false;
+        this.sound = sound;
     }
 
-    public void setEnabledSound(Sound sound) { this.enabledSound = sound; }
+    public PlayerData(OfflinePlayer player, Sound sound, boolean enabled) {
+        this.player = player;
+        this.name = player.getName();
+        this.uuid = player.getUniqueId();
+        this.isEnabled = enabled;
+        this.sound = sound;
+    }
 
-    public Sound getEnabledSound() { return this.enabledSound; }
+    public void setSound(Sound sound) { this.sound = sound; }
+
+    public Sound getSound() { return this.sound; }
 
     public OfflinePlayer getPlayer() { return this.player; }
 
     public String getName() { return this.name; }
 
     public UUID getUUID() { return this.uuid; }
+
+    public boolean isEnabled() { return this.isEnabled; }
+
+    public void setEnabled(boolean isEnabled) { this.isEnabled = isEnabled; }
 
 }

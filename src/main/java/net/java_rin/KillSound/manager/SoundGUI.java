@@ -25,7 +25,7 @@ public class SoundGUI {
         final short noDisc = 14;
         final short hasDisc = 7;
         final short enabledDisc = 5;
-        Sound sound = PlayerDataHolder.getPlayerData(player).getEnabledSound();
+        Sound sound = PlayerDataHolder.getPlayerData(player).getSound();
 
         // todo: check which disc is enabled and set it to lime wool
         for (int slot = 20; slot <= 26; slot++) {

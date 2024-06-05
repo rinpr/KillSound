@@ -13,7 +13,7 @@ import java.util.List;
 public class SoundData {
 
     public static void playKillSound(Player player, Player player2) {
-        Sound sound = PlayerDataHolder.getPlayerData(player).getEnabledSound();
+        Sound sound = PlayerDataHolder.getPlayerData(player).getSound();
         if (sound == Sound.NONE) return;
 
         EnumMap<Sound, List<String>> soundMap = new EnumMap<>(Sound.class);
