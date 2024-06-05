@@ -1,6 +1,7 @@
 package net.java_rin.KillSound.manager;
 
 import net.java_rin.KillSound.KillSound;
+import net.java_rin.KillSound.utilities.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -76,14 +77,13 @@ public class ConfigManager {
     private static ItemStack createItemStack(String basePath) {
         String itemString = config.getString(basePath + ".material");
         ItemStack item;
-        Material material = Material.STONE;
         if (itemString.contains(":")) {
             String[] parts = itemString.split(":");
-            material = Material.matchMaterial(parts[0]);
-            item = new ItemStack(material, 1, (short) Integer.parseInt(parts[1]));
+            item = new ItemStack(Material.matchMaterial(parts[0]), 1, (short) Integer.parseInt(parts[1]));
         } else {
-            item = new ItemStack(material);
+            item = (Material.getMaterial(itemString) != null) ? new ItemStack(Material.getMaterial(itemString)) : new ItemStack(Material.STONE);
         }
+        Message.log(itemString);
 
         String displayName = config.getString(basePath + ".display_name", "cant.read.display_name.value");
         List<String> lore = config.getStringList(basePath + ".lore");
