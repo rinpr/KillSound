@@ -2,6 +2,7 @@ package net.java_rin.KillSound.listeners;
 
 import net.java_rin.KillSound.manager.PlayerData;
 import net.java_rin.KillSound.manager.PlayerDataHolder;
+import net.java_rin.KillSound.sounds.SoundData;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +18,7 @@ public class PlayerListeners implements Listener {
         Player victim = event.getEntity();
         Player killer = event.getEntity().getKiller();
         // todo: check if killer has enabled any killsound disc and play the sound
+        SoundData.play(killer);
     }
 
     @EventHandler
