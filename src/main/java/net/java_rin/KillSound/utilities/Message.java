@@ -15,7 +15,7 @@ public class Message {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + message));
     }
     public static void log(String message) {
-        Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', ConfigManager.PREFIX + message));
+        Bukkit.getLogger().info("[KillSound] " + message);
     }
     public static void broadcast(String message) {
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
