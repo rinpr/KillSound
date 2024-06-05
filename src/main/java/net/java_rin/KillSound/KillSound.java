@@ -4,19 +4,16 @@ import net.java_rin.KillSound.commands.KillSoundCommand;
 import net.java_rin.KillSound.commands.KillSoundTabCompleter;
 import net.java_rin.KillSound.listeners.InventoryListeners;
 import net.java_rin.KillSound.listeners.PlayerListeners;
+import net.java_rin.KillSound.manager.ConfigManager;
 import net.java_rin.KillSound.manager.PlayerDataHolder;
 import net.java_rin.KillSound.utilities.Message;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
 public class KillSound extends JavaPlugin {
-    public static KillSound instance;
-    public File configPath = new File(this.getDataFolder() + File.separator + "config.yml");
-    public FileConfiguration config;
+    private static KillSound instance;
 
     @Override
     public void onEnable() {
@@ -29,13 +26,12 @@ public class KillSound extends JavaPlugin {
         getServer().getConsoleSender().sendMessage("┗┛┗━┛┗┛┗━┛┗━┛┗━━━┛┗━━┛┗━━┛┗┛┗┛┗━━┛");
         getServer().getConsoleSender().sendMessage("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         getServer().getConsoleSender().sendMessage("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        this.saveDefaultConfig();
-        this.loadDefaultConfig();
+        ConfigManager.loadConfig();
         this.generatePlayerDataFolder();
         this.registerEvents();
         this.registerCommands();
         PlayerDataHolder.load();
-        PlayerDataHolder.autoSave(1);
+        PlayerDataHolder.autoSave(ConfigManager.AUTOSAVE_INTERVAL);
     }
 
     private void registerEvents() {
@@ -58,13 +54,6 @@ public class KillSound extends JavaPlugin {
                 Message.log("An error has occurred while generating plugins folder!");
             }
         }
-    }
-
-    private void loadDefaultConfig() {
-        if (!this.configPath.exists()) {
-            instance.saveResource("config.yml", false);
-        }
-        this.config = YamlConfiguration.loadConfiguration(this.configPath);
     }
 
     @Override

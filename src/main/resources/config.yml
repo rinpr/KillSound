@@ -1,5 +1,7 @@
 # Plugin's Prefix
 prefix: "&7[&aKillSound&7] "
+# player data saving interval (in minute)
+autosave: 5
 
 # Sound
 sound:
@@ -24,9 +26,9 @@ sound:
       - "custom.seven"
   sound_2:
     material: IRON_INGOT
-    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    display_name: "&7[&cSoundPad&7] &6Admin"
     lore:
-      - "&eChance: &61.5%"
+      - "&eChance: &615.5%"
       - ""
       - "&7Category: &cSoundPad"
       - "&7RightClick To unlock this soundpad"
@@ -42,9 +44,9 @@ sound:
       - "custom.seven"
   sound_3:
     material: IRON_INGOT
-    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    display_name: "&7[&cSoundPad&7] &6Jotaro"
     lore:
-      - "&eChance: &61.5%"
+      - "&eChance: &611.5%"
       - ""
       - "&7Category: &cSoundPad"
       - "&7RightClick To unlock this soundpad"

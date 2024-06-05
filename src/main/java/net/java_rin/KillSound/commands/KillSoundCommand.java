@@ -3,7 +3,8 @@ package net.java_rin.KillSound.commands;
 import net.java_rin.KillSound.manager.ConfigManager;
 import net.java_rin.KillSound.manager.PlayerDataHolder;
 import net.java_rin.KillSound.manager.SoundGUI;
-import net.java_rin.KillSound.sounds.Sound1;
+import net.java_rin.KillSound.sounds.Sound;
+import net.java_rin.KillSound.sounds.SoundData;
 import net.java_rin.KillSound.utilities.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,10 +22,12 @@ public class KillSoundCommand implements CommandExecutor {
             }
             if (args[0].equalsIgnoreCase("reload")) {
                 ConfigManager.reload();
+                PlayerDataHolder.shutdown();
+                PlayerDataHolder.autoSave(ConfigManager.AUTOSAVE_INTERVAL);
                 Message.send( player, ConfigManager.PREFIX + "&fReloaded!");
             } else if (args[0].equalsIgnoreCase("debug")) {
-                Sound1.playSound(player);
-                Sound1.giveSoundItem(player);
+                player.getInventory().addItem(SoundData.getSoundItem(Sound.ONE));
+                SoundData.play(player);
                 Message.send( player, String.valueOf(PlayerDataHolder.getAllPlayerData()));
             } else {
                 Message.send( player, ConfigManager.PREFIX + "&cNo such commands!");

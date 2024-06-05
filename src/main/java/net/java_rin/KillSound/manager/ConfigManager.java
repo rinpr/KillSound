@@ -3,6 +3,7 @@ package net.java_rin.KillSound.manager;
 import net.java_rin.KillSound.KillSound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -12,7 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigManager {
+
+    private static final File configPath = new File(KillSound.getInstance().getDataFolder() + File.separator + "config.yml");
+    private static FileConfiguration config;
+
     public static String PREFIX;
+    public static int AUTOSAVE_INTERVAL;
     public static String GUI_NAME;
     public static List<ItemStack> SOUNDS_ITEM;
     public static List<String> SOUNDS_1_STRING;
@@ -23,40 +29,29 @@ public class ConfigManager {
     public static List<String> SOUNDS_6_STRING;
     public static List<String> SOUNDS_7_STRING;
 
-    static {
-        KillSound.instance = KillSound.getInstance();
-        ConfigManager.PREFIX = KillSound.instance.getConfig().getString("prefix");
-        ConfigManager.GUI_NAME = KillSound.instance.getConfig().getString("sound.gui_name");
-        SOUNDS_ITEM = setItem();
-        ConfigManager.SOUNDS_1_STRING = KillSound.instance.getConfig().getStringList("sound.sound_1.sounds");
-        ConfigManager.SOUNDS_2_STRING = KillSound.instance.getConfig().getStringList("sound.sound_2.sounds");
-        ConfigManager.SOUNDS_3_STRING = KillSound.instance.getConfig().getStringList("sound.sound_3.sounds");
-        ConfigManager.SOUNDS_4_STRING = KillSound.instance.getConfig().getStringList("sound.sound_4.sounds");
-        ConfigManager.SOUNDS_5_STRING = KillSound.instance.getConfig().getStringList("sound.sound_5.sounds");
-        ConfigManager.SOUNDS_6_STRING = KillSound.instance.getConfig().getStringList("sound.sound_6.sounds");
-        ConfigManager.SOUNDS_7_STRING = KillSound.instance.getConfig().getStringList("sound.sound_7.sounds");
-    }
-
-    private static void loadFiles() {
-        if (!KillSound.instance.configPath.exists()) {
-            KillSound.instance.saveResource("config.yml", false);
+    public static void loadConfig() {
+        // If the config.yml is not exists will generate a new one with default value
+        if (!configPath.exists()) {
+            KillSound.getInstance().saveResource("config.yml", false);
         }
-        KillSound.instance.configPath = new File(KillSound.instance.getDataFolder() + File.separator + "config.yml");
-        KillSound.instance.config = YamlConfiguration.loadConfiguration(KillSound.instance.configPath);
+        // load config.yml and save to memory
+        config = YamlConfiguration.loadConfiguration(configPath);
+        // Setting new value to variables
+        PREFIX = config.getString("prefix");
+        AUTOSAVE_INTERVAL = config.getInt("autosave");
+        GUI_NAME = config.getString("sound.gui_name");
+        SOUNDS_ITEM = setItem();
+        SOUNDS_1_STRING = config.getStringList("sound.sound_1.sounds");
+        SOUNDS_2_STRING = config.getStringList("sound.sound_2.sounds");
+        SOUNDS_3_STRING = config.getStringList("sound.sound_3.sounds");
+        SOUNDS_4_STRING = config.getStringList("sound.sound_4.sounds");
+        SOUNDS_5_STRING = config.getStringList("sound.sound_5.sounds");
+        SOUNDS_6_STRING = config.getStringList("sound.sound_6.sounds");
+        SOUNDS_7_STRING = config.getStringList("sound.sound_7.sounds");
     }
 
     public static void reload() {
-        loadFiles();
-        ConfigManager.PREFIX = KillSound.instance.config.getString("prefix");
-        ConfigManager.GUI_NAME = KillSound.instance.config.getString("sound.gui_name");
-        SOUNDS_ITEM = setItem();
-        ConfigManager.SOUNDS_1_STRING = KillSound.instance.getConfig().getStringList("sound.sound_1.sounds");
-        ConfigManager.SOUNDS_2_STRING = KillSound.instance.getConfig().getStringList("sound.sound_2.sounds");
-        ConfigManager.SOUNDS_3_STRING = KillSound.instance.getConfig().getStringList("sound.sound_3.sounds");
-        ConfigManager.SOUNDS_4_STRING = KillSound.instance.getConfig().getStringList("sound.sound_4.sounds");
-        ConfigManager.SOUNDS_5_STRING = KillSound.instance.getConfig().getStringList("sound.sound_5.sounds");
-        ConfigManager.SOUNDS_6_STRING = KillSound.instance.getConfig().getStringList("sound.sound_6.sounds");
-        ConfigManager.SOUNDS_7_STRING = KillSound.instance.getConfig().getStringList("sound.sound_7.sounds");
+        loadConfig();
     }
 
     private static List<ItemStack> setItem() {
@@ -70,12 +65,12 @@ public class ConfigManager {
     }
 
     private static ItemStack createItemStack(String basePath) {
-        String materialName = KillSound.instance.config.getString(basePath + ".material");
+        String materialName = config.getString(basePath + ".material");
         Material material = Material.matchMaterial(materialName);
         ItemStack item = (material != null) ? new ItemStack(material) : new ItemStack(Material.STONE);
 
-        String displayName = KillSound.instance.config.getString(basePath + ".display_name", "Default Display Name");
-        List<String> lore = KillSound.instance.config.getStringList(basePath + ".lore");
+        String displayName = config.getString(basePath + ".display_name", "Default Display Name");
+        List<String> lore = config.getStringList(basePath + ".lore");
 
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
