@@ -37,34 +37,22 @@ public class PlayerDataHolder {
     public static void save() {
         Message.log("Saving player data...");
         for (PlayerData playerData : playerData.values()) {
-            File file = new File(dataFolder + File.separator + playerData.getUUID() + ".yml");
-            if (file.exists() && !file.isDirectory()) {
-                // The file exists and is not a directory. update its contents
-                FileConfiguration data_file = YamlConfiguration.loadConfiguration(file);
-                data_file.set("uuid", playerData.getUUID().toString());
-                data_file.set("name", playerData.getName());
-                data_file.set("enabled-sound", playerData.getEnabledSound().toString());
-                try {
-                    data_file.save(file); // Save changes to the file
-                } catch (IOException e) {
-                    Message.log("An error occurred while saving player data " + playerData.getUUID() + ".yml");
-                    e.printStackTrace();
-                }
-            } else if (!file.exists() && !file.isDirectory()) {
-                // The file does not exist. create a new one
-                FileConfiguration data_file = new YamlConfiguration();
-                data_file.set("uuid", playerData.getUUID().toString());
-                data_file.set("name", playerData.getName());
-                data_file.set("enabled-sound", playerData.getEnabledSound().toString());
-                try {
-                    data_file.save(file); // Save the new file
-                } catch (IOException e) {
-                    Message.log("An error occurred while creating player data " + playerData.getUUID() + ".yml");
-                    e.printStackTrace();
-                }
+            File file = new File(dataFolder, playerData.getUUID() + ".yml");
+            FileConfiguration data_file = new YamlConfiguration();
+
+            data_file.set("uuid", playerData.getUUID().toString());
+            data_file.set("name", playerData.getName());
+            data_file.set("enabled-sound", playerData.getEnabledSound().toString());
+
+            try {
+                data_file.save(file);
+            } catch (IOException e) {
+                Message.log("An error occurred while saving/creating player data " + playerData.getUUID() + ".yml");
+                e.printStackTrace();
             }
         }
     }
+
 
     public static void load() {
         File[] files = dataFolder.listFiles();
