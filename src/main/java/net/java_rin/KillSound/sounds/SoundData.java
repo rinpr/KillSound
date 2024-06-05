@@ -11,8 +11,17 @@ import org.bukkit.inventory.ItemStack;
 import java.util.EnumMap;
 import java.util.List;
 
+/**
+ * Utility class for managing sound-related data and operations.
+ */
 public class SoundData {
 
+    /**
+     * Plays the kill sound for the given players based on their settings.
+     *
+     * @param player  The player who kill.
+     * @param player2 The victim player.
+     */
     public static void playKillSound(Player player, Player player2) {
         PlayerData playerData = PlayerDataHolder.getPlayerData(player);
         if (!playerData.isEnabled()) return;
@@ -35,11 +44,23 @@ public class SoundData {
         }
     }
 
+    /**
+     * Plays the random kill sound for the given players.
+     *
+     * @param player  The killer player.
+     * @param sound_list List of sound to randomly play.
+     */
     @SuppressWarnings("deprecation")
     private static void play(Player player, List<String> sound_list) {
         player.playSound(player.getLocation(), RandomList.random(sound_list), 100F, 1F);
     }
 
+    /**
+     * Retrieves the item associated with the specified sound.
+     *
+     * @param sound The sound for which to retrieve the item.
+     * @return The corresponding ItemStack representing the sound item.
+     */
     public static ItemStack getSoundItem(Sound sound) {
         if (sound == Sound.NONE) new ItemStack(Material.STONE);
         int ordinal = sound.ordinal() - 1;
@@ -49,6 +70,11 @@ public class SoundData {
         return new ItemStack(Material.STONE);
     }
 
+    /**
+     * Retrieves a list of all sound items.
+     *
+     * @return A list of ItemStacks representing sound items.
+     */
     public static List<ItemStack> getSoundItems() {
         return ConfigManager.SOUNDS_ITEM;
     }
