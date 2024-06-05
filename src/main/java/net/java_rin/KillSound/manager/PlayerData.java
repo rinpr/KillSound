@@ -1,24 +1,24 @@
 package net.java_rin.KillSound.manager;
 
 import net.java_rin.KillSound.sounds.Sound;
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 
 import java.util.UUID;
 
 public class PlayerData {
-    private Player player;
+    private OfflinePlayer player;
     private String name;
     private UUID uuid;
     private Sound enabledSound;
 
-    public PlayerData(Player player) {
+    public PlayerData(OfflinePlayer player) {
         this.player = player;
         this.name = player.getName();
         this.uuid = player.getUniqueId();
         this.enabledSound = Sound.NONE;
     }
 
-    public PlayerData(Player player, Sound sound) {
+    public PlayerData(OfflinePlayer player, Sound sound) {
         this.player = player;
         this.name = player.getName();
         this.uuid = player.getUniqueId();
@@ -29,7 +29,10 @@ public class PlayerData {
 
     public Sound getEnabledSound() { return this.enabledSound; }
 
-    public Player getPlayer() { return this.player; }
+    public OfflinePlayer getPlayer() { return this.player; }
 
     public String getName() { return this.name; }
+
+    public UUID getUUID() { return this.uuid; }
+
 }

@@ -17,16 +17,4 @@ public class InventoryListeners implements Listener {
         int slot = event.getSlot();
         player.sendMessage(ChatColor.GREEN + "Slots: " + ChatColor.RESET + slot);
     }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        event.setJoinMessage(ChatColor.GRAY + "(" + ChatColor.GREEN + "+" + ChatColor.GRAY + ") " + ChatColor.RESET + player.getName());
-    }
-
-    @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
-        Player player = event.getPlayer();
-        event.setQuitMessage(ChatColor.GRAY + "(" + ChatColor.RED + "-" + ChatColor.GRAY + ") " + ChatColor.RESET + player.getName());
-    }
 }

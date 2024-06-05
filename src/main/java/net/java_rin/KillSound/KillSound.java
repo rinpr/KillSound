@@ -3,6 +3,8 @@ package net.java_rin.KillSound;
 import net.java_rin.KillSound.commands.KillSoundCommand;
 import net.java_rin.KillSound.commands.KillSoundTabCompleter;
 import net.java_rin.KillSound.listeners.InventoryListeners;
+import net.java_rin.KillSound.listeners.PlayerListeners;
+import net.java_rin.KillSound.manager.PlayerDataHolder;
 import net.java_rin.KillSound.utilities.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -32,10 +34,13 @@ public class KillSound extends JavaPlugin {
         this.generatePlayerDataFolder();
         this.registerEvents();
         this.registerCommands();
+        PlayerDataHolder.load();
+        PlayerDataHolder.autoSave(1);
     }
 
     private void registerEvents() {
         getServer().getPluginManager().registerEvents(new InventoryListeners(), instance);
+        getServer().getPluginManager().registerEvents(new PlayerListeners(), instance);
     }
 
     private void registerCommands() {
@@ -48,9 +53,9 @@ public class KillSound extends JavaPlugin {
         if (!file.exists()) {
             boolean dirCreated = file.mkdirs();
             if (dirCreated) {
-                Message.send("Successfully generated plugins folder!");
+                Message.log("Successfully generated plugins folder!");
             } else {
-                Message.send("An error has occurred while generating plugins folder!");
+                Message.log("An error has occurred while generating plugins folder!");
             }
         }
     }
@@ -65,6 +70,7 @@ public class KillSound extends JavaPlugin {
     @Override
     public void onDisable() {
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[KillSound]" + ChatColor.WHITE + ": Disabled!");
+        PlayerDataHolder.shutdown();
     }
 
     public static KillSound getInstance() {
