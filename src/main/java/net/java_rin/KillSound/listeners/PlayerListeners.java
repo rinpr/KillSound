@@ -18,7 +18,7 @@ public class PlayerListeners implements Listener {
         Player victim = event.getEntity();
         Player killer = event.getEntity().getKiller();
         // todo: check if killer has enabled any killsound disc and play the sound
-        SoundData.play(killer);
+        SoundData.playKillSound(killer, victim);
     }
 
     @EventHandler
