@@ -25,6 +25,7 @@ public class SoundGUI {
         final short noDisc = 14;
         final short hasDisc = 7;
         final short enabledDisc = 5;
+        Sound sound = PlayerDataHolder.getPlayerData(player).getEnabledSound();
 
         // todo: check which disc is enabled and set it to lime wool
         for (int slot = 20; slot <= 26; slot++) {
@@ -37,12 +38,10 @@ public class SoundGUI {
     }
 
     private static void setDisc(Inventory inventory) {
-        inventory.setItem(11, Sound1.getSoundItem());
-        inventory.setItem(12, Sound2.getSoundItem());
-        inventory.setItem(13, Sound3.getSoundItem());
-        inventory.setItem(14, Sound4.getSoundItem());
-        inventory.setItem(15, Sound5.getSoundItem());
-        inventory.setItem(16, Sound6.getSoundItem());
-        inventory.setItem(17, Sound7.getSoundItem());
+        int slot = 11;
+        for (ItemStack item : SoundData.getSoundItems()) {
+            inventory.setItem(slot, item);
+            slot++;
+        }
     }
 }
