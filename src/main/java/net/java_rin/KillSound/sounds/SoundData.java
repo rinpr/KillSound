@@ -1,6 +1,7 @@
 package net.java_rin.KillSound.sounds;
 
 import net.java_rin.KillSound.manager.ConfigManager;
+import net.java_rin.KillSound.manager.PlayerData;
 import net.java_rin.KillSound.manager.PlayerDataHolder;
 import net.java_rin.KillSound.utilities.RandomList;
 import org.bukkit.Material;
@@ -13,7 +14,9 @@ import java.util.List;
 public class SoundData {
 
     public static void playKillSound(Player player, Player player2) {
-        Sound sound = PlayerDataHolder.getPlayerData(player).getSound();
+        PlayerData playerData = PlayerDataHolder.getPlayerData(player);
+        if (!playerData.isEnabled()) return;
+        Sound sound = playerData.getSound();
         if (sound == Sound.NONE) return;
 
         EnumMap<Sound, List<String>> soundMap = new EnumMap<>(Sound.class);
