@@ -17,7 +17,8 @@ public class KillSoundCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length < 1) {
-                SoundGUI.open(player);
+                SoundGUI gui = new SoundGUI(PlayerDataHolder.getPlayerData(player));
+                gui.open();
                 return true;
             }
             if (args[0].equalsIgnoreCase("reload")) {
@@ -26,9 +27,7 @@ public class KillSoundCommand implements CommandExecutor {
                 PlayerDataHolder.autoSave(ConfigManager.AUTOSAVE_INTERVAL);
                 Message.send( player, ConfigManager.PREFIX + "&fReloaded!");
             } else if (args[0].equalsIgnoreCase("debug")) {
-                player.getInventory().addItem(SoundData.getSoundItem(Sound.ONE));
-                SoundData.play(player);
-                Message.send( player, String.valueOf(PlayerDataHolder.getAllPlayerData()));
+                player.getInventory().addItem(SoundData.getSoundItem(Sound.THREE));
             } else {
                 Message.send( player, ConfigManager.PREFIX + "&cNo such commands!");
             }
@@ -39,6 +38,8 @@ public class KillSoundCommand implements CommandExecutor {
             } else {
                 if (args[0].equalsIgnoreCase("reload")) {
                     ConfigManager.reload();
+                    PlayerDataHolder.shutdown();
+                    PlayerDataHolder.autoSave(ConfigManager.AUTOSAVE_INTERVAL);
                     Message.log( "Reloaded!");
                 } else {
                     Message.log("&cNo such commands!");
