@@ -104,6 +104,9 @@ public class PlayerData {
      *
      * @param isEnabled {@code true} to enable sound, {@code false} to disable.
      */
-    public void setEnabled(boolean isEnabled) { this.isEnabled = isEnabled; }
+    public boolean setEnabled(boolean isEnabled) {
+        this.isEnabled = isEnabled;
+        return isEnabled;
+    }
 
 }
