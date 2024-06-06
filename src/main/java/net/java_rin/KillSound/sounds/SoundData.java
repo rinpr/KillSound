@@ -79,4 +79,48 @@ public class SoundData {
         return ConfigManager.SOUNDS_ITEM;
     }
 
+    /**
+     * Gets the availability slot for a given sound.
+     *
+     * @param sound The sound to check.
+     * @return The availability slot (20 to 26) or -1 if the sound is NONE or error.
+     */
+    public static int getAvailabilitySlot(Sound sound) {
+        if (sound == Sound.NONE) return -1;
+        if (sound == Sound.ONE) return 20;
+        if (sound == Sound.TWO) return 21;
+        if (sound == Sound.THREE) return 22;
+        if (sound == Sound.FOUR) return 23;
+        if (sound == Sound.FIVE) return 24;
+        if (sound == Sound.SIX) return 25;
+        if (sound == Sound.SEVEN) return 26;
+        return -1;
+    }
+
+    /**
+     * Gets the sound corresponding to the availability slot.
+     *
+     * @param slot The availability slot (20 to 26).
+     * @return The corresponding sound or Sound.NONE if the slot is invalid.
+     */
+    public static Sound getSoundFromAvailabilitySlot(int slot) {
+        switch (slot) {
+            case 20:
+                return Sound.ONE;
+            case 21:
+                return Sound.TWO;
+            case 22:
+                return Sound.THREE;
+            case 23:
+                return Sound.FOUR;
+            case 24:
+                return Sound.FIVE;
+            case 25:
+                return Sound.SIX;
+            case 26:
+                return Sound.SEVEN;
+            default:
+                return Sound.NONE;
+        }
+    }
 }
