@@ -2,6 +2,7 @@ package net.java_rin.KillSound;
 
 import net.java_rin.KillSound.commands.KillSoundCommand;
 import net.java_rin.KillSound.commands.KillSoundTabCompleter;
+import net.java_rin.KillSound.commands.PlayerCommand;
 import net.java_rin.KillSound.listeners.InventoryListeners;
 import net.java_rin.KillSound.listeners.PlayerListeners;
 import net.java_rin.KillSound.manager.ConfigManager;
@@ -42,6 +43,7 @@ public class KillSound extends JavaPlugin {
     private void registerCommands() {
         instance.getCommand("killsound").setExecutor(new KillSoundCommand());
         instance.getCommand("killsound").setTabCompleter(new KillSoundTabCompleter());
+        instance.getCommand("soundadz").setExecutor(new PlayerCommand());
     }
 
     private void generatePlayerDataFolder() {
