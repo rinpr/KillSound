@@ -83,7 +83,6 @@ public class ConfigManager {
         } else {
             item = (Material.getMaterial(itemString) != null) ? new ItemStack(Material.getMaterial(itemString)) : new ItemStack(Material.STONE);
         }
-        Message.log(itemString);
 
         String displayName = config.getString(basePath + ".display_name", "cant.read.display_name.value");
         List<String> lore = config.getStringList(basePath + ".lore");
