@@ -8,3 +8,5 @@ commands:
     description: Main command for KillSound
     permission: killsound.command
     permission-message: You don't have permission to use this command!
+  soundadz:
+    description: Player's command
