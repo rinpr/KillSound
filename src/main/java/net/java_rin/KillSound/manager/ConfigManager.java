@@ -1,7 +1,6 @@
 package net.java_rin.KillSound.manager;
 
 import net.java_rin.KillSound.KillSound;
-import net.java_rin.KillSound.utilities.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,6 +22,11 @@ public class ConfigManager {
     public static int AUTOSAVE_INTERVAL;
     public static String GUI_NAME;
     public static List<ItemStack> SOUNDS_ITEM;
+    public static ItemStack DISABLE_BUTTON;
+    public static ItemStack ENABLE_BUTTON;
+    public static ItemStack AVAILABLE_BUTTON;
+    public static ItemStack UNAVAILABLE_BUTTON;
+    public static ItemStack SELECTED_BUTTON;
     public static List<String> SOUNDS_1_STRING;
     public static List<String> SOUNDS_2_STRING;
     public static List<String> SOUNDS_3_STRING;
@@ -43,6 +47,11 @@ public class ConfigManager {
         AUTOSAVE_INTERVAL = config.getInt("autosave");
         GUI_NAME = config.getString("sound.gui_name");
         SOUNDS_ITEM = setItem();
+        DISABLE_BUTTON = createItemStack("sound.toggle_disabled_button");
+        ENABLE_BUTTON = createItemStack("sound.toggle_enabled_button");
+        AVAILABLE_BUTTON = createItemStack("sound.available_disc_button");
+        UNAVAILABLE_BUTTON = createItemStack("sound.unavailable_disc_button");
+        SELECTED_BUTTON = createItemStack("sound.disc_select_button");
         SOUNDS_1_STRING = config.getStringList("sound.sound_1.sounds");
         SOUNDS_2_STRING = config.getStringList("sound.sound_2.sounds");
         SOUNDS_3_STRING = config.getStringList("sound.sound_3.sounds");

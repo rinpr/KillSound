@@ -6,16 +6,42 @@ autosave: 5
 # Sound
 sound:
   gui_name: "&c[&6Select Kill Sound&c]"
+  toggle_disabled_button:
+    material: WOOL:14
+    display_name: "&cDisabled"
+    lore:
+      - ""
+  toggle_enabled_button:
+    material: WOOL:5
+    display_name: "&aEnabled"
+    lore:
+      - ""
+  available_disc_button:
+    material: WOOL:7
+    display_name: "&7Unlocked Disc."
+    lore:
+      - ""
+  unavailable_disc_button:
+    material: WOOL:14
+    display_name: "&7Locked Disc."
+    lore:
+      - ""
+  disc_select_button:
+    material: WOOL:5
+    display_name: "&7Click to enable"
+    lore:
+      - ""
+  # This section uses to configure the Kill Sound properties.
   sound_1:
-    material: IRON_INGOT
+    # This will be used in the KillSound GUI and player obtainable items.
+    material: COAL
     display_name: "&7[&cSoundPad&7] &6Na Khom"
     lore:
-      - "&eChance: &61.5%"
-      - ""
       - "&7Category: &cSoundPad"
       - "&7RightClick To unlock this soundpad"
       - ""
       - "&7/soundgnz"
+    # Specify list of custom sounds here. Please note that this required resource pack and must properly configure in sounds.json.
     sounds:
       - "custom.one"
       - "custom.two"
@@ -28,8 +54,6 @@ sound:
     material: IRON_INGOT
     display_name: "&7[&cSoundPad&7] &6Admin"
     lore:
-      - "&eChance: &615.5%"
-      - ""
       - "&7Category: &cSoundPad"
       - "&7RightClick To unlock this soundpad"
       - ""
@@ -43,11 +67,9 @@ sound:
       - "custom2.six"
       - "custom2.seven"
   sound_3:
-    material: IRON_INGOT
+    material: GOLD_INGOT
     display_name: "&7[&cSoundPad&7] &6Jotaro"
     lore:
-      - "&eChance: &611.5%"
-      - ""
       - "&7Category: &cSoundPad"
       - "&7RightClick To unlock this soundpad"
       - ""
@@ -61,11 +83,9 @@ sound:
       - "custom3.six"
       - "custom3.seven"
   sound_4:
-    material: IRON_INGOT
-    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    material: REDSTONE
+    display_name: "&7[&cSoundPad&7] &6Sigma"
     lore:
-      - "&eChance: &61.5%"
-      - ""
       - "&7Category: &cSoundPad"
       - "&7RightClick To unlock this soundpad"
       - ""
@@ -79,11 +99,9 @@ sound:
       - "custom4.six"
       - "custom4.seven"
   sound_5:
-    material: IRON_INGOT
-    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    material: LAPIS_BLOCK
+    display_name: "&7[&cSoundPad&7] &6Kanye West"
     lore:
-      - "&eChance: &61.5%"
-      - ""
       - "&7Category: &cSoundPad"
       - "&7RightClick To unlock this soundpad"
       - ""
@@ -97,11 +115,9 @@ sound:
       - "custom5.six"
       - "custom5.seven"
   sound_6:
-    material: IRON_INGOT
-    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    material: EMERALD
+    display_name: "&7[&cSoundPad&7] &6Snoop Dog"
     lore:
-      - "&eChance: &61.5%"
-      - ""
       - "&7Category: &cSoundPad"
       - "&7RightClick To unlock this soundpad"
       - ""
@@ -115,11 +131,9 @@ sound:
       - "custom6.six"
       - "custom6.seven"
   sound_7:
-    material: IRON_INGOT
-    display_name: "&7[&cSoundPad&7] &6Na Khom"
+    material: DIAMOND
+    display_name: "&7[&cSoundPad&7] &6Your mom"
     lore:
-      - "&eChance: &61.5%"
-      - ""
       - "&7Category: &cSoundPad"
       - "&7RightClick To unlock this soundpad"
       - ""
