@@ -1,6 +1,5 @@
 package net.java_rin.KillSound.utilities;
 
-import net.java_rin.KillSound.manager.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

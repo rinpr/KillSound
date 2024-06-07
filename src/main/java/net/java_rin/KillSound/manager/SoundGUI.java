@@ -4,7 +4,6 @@ import net.java_rin.KillSound.sounds.*;
 import net.java_rin.KillSound.utilities.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -30,26 +29,34 @@ public class SoundGUI {
         Message.send(this.player, ConfigManager.PREFIX + "&aOpened Sound GUI");
     }
 
-    @Deprecated
-    public static void update(Player player) {
-        Inventory inventory = Bukkit.createInventory(player, GUI_COLUMN * 9, ChatColor.translateAlternateColorCodes('&', ConfigManager.GUI_NAME));
-        PlayerData playerData = PlayerDataHolder.getPlayerData(player);
-
+    public static void update(Inventory inventory, PlayerData playerData) {
         // set enable buttons
         if (playerData.isEnabled()) {
-            inventory.setItem(9, new ItemStack(Material.WOOL, 1, (short) 5));
+            inventory.setItem(9, ConfigManager.ENABLE_BUTTON);
         } else {
-            inventory.setItem(9, new ItemStack(Material.WOOL, 1, (short) 14));
+            inventory.setItem(9, ConfigManager.DISABLE_BUTTON);
         }
 
         // set sound disc
         int slot = 11;
-        for (ItemStack item : SoundData.getSoundItems()) {
+        for (ItemStack item : DiscData.getDiscItems()) {
             inventory.setItem(slot, item);
             slot++;
         }
 
-        player.openInventory(inventory);
+        int enabled_disc_slot = DiscData.getAvailabilitySlot(playerData.getSound());
+        // set availability disc
+        for (int loop_slot = 20; loop_slot <= 26; loop_slot++) {
+            if (loop_slot == enabled_disc_slot) {
+                inventory.setItem(loop_slot, ConfigManager.SELECTED_BUTTON);
+                continue;
+            }
+            if (playerData.getPlayer().getPlayer().hasPermission("killsound.custom." + (loop_slot - 19))) {
+                inventory.setItem(loop_slot, ConfigManager.AVAILABLE_BUTTON);
+            } else {
+                inventory.setItem(loop_slot, ConfigManager.UNAVAILABLE_BUTTON);
+            }
+        }
     }
 
     private void setEnable() {
@@ -61,10 +68,9 @@ public class SoundGUI {
     }
 
     private void setAvailabilityDisc() {
-        Sound sound = this.playerData.getSound();
-        int enabled_disc_slot = SoundData.getAvailabilitySlot(sound);
+        Disc disc = this.playerData.getSound();
+        int enabled_disc_slot = DiscData.getAvailabilitySlot(disc);
 
-        // todo: check which disc is enabled and set it to ConfigManager.SELECTED_BUTTON
         for (int slot = 20; slot <= 26; slot++) {
             if (slot == enabled_disc_slot) {
                 this.inventory.setItem(slot, ConfigManager.SELECTED_BUTTON);
@@ -80,7 +86,7 @@ public class SoundGUI {
 
     private void setDisc() {
         int slot = 11;
-        for (ItemStack item : SoundData.getSoundItems()) {
+        for (ItemStack item : DiscData.getDiscItems()) {
             this.inventory.setItem(slot, item);
             slot++;
         }

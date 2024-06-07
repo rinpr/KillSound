@@ -1,6 +1,6 @@
 package net.java_rin.KillSound.manager;
 
-import net.java_rin.KillSound.sounds.Sound;
+import net.java_rin.KillSound.sounds.Disc;
 import org.bukkit.OfflinePlayer;
 
 import java.util.UUID;
@@ -13,7 +13,7 @@ public class PlayerData {
     private String name;
     private UUID uuid;
     private boolean isEnabled;
-    private Sound sound;
+    private Disc disc;
 
     /**
      * Constructs a new PlayerData instance for the given player.
@@ -25,51 +25,51 @@ public class PlayerData {
         this.name = player.getName();
         this.uuid = player.getUniqueId();
         this.isEnabled = false;
-        this.sound = Sound.NONE;
+        this.disc = Disc.NONE;
     }
 
     /**
      * Constructs a new PlayerData instance for the given player with a specified sound.
      *
      * @param player The OfflinePlayer associated with this data.
-     * @param sound  The initial sound setting for the player.
+     * @param disc  The initial sound setting for the player.
      */
-    public PlayerData(OfflinePlayer player, Sound sound) {
+    public PlayerData(OfflinePlayer player, Disc disc) {
         this.player = player;
         this.name = player.getName();
         this.uuid = player.getUniqueId();
         this.isEnabled = false;
-        this.sound = sound;
+        this.disc = disc;
     }
 
     /**
      * Constructs a new PlayerData instance for the given player with specified sound and enabled status.
      *
      * @param player   The OfflinePlayer associated with this data.
-     * @param sound    The initial sound setting for the player.
+     * @param disc    The initial sound setting for the player.
      * @param enabled  Whether sound is enabled for the player.
      */
-    public PlayerData(OfflinePlayer player, Sound sound, boolean enabled) {
+    public PlayerData(OfflinePlayer player, Disc disc, boolean enabled) {
         this.player = player;
         this.name = player.getName();
         this.uuid = player.getUniqueId();
         this.isEnabled = enabled;
-        this.sound = sound;
+        this.disc = disc;
     }
 
     /**
      * Sets the sound setting for the player.
      *
-     * @param sound The new sound setting.
+     * @param disc The new sound setting.
      */
-    public void setSound(Sound sound) { this.sound = sound; }
+    public void setSound(Disc disc) { this.disc = disc; }
 
     /**
      * Retrieves the current sound setting for the player.
      *
      * @return The player's sound setting.
      */
-    public Sound getSound() { return this.sound; }
+    public Disc getSound() { return this.disc; }
 
     /**
      * Retrieves the associated OfflinePlayer.

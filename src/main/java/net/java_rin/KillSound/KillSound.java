@@ -3,6 +3,7 @@ package net.java_rin.KillSound;
 import net.java_rin.KillSound.commands.KillSoundCommand;
 import net.java_rin.KillSound.commands.KillSoundTabCompleter;
 import net.java_rin.KillSound.commands.PlayerCommand;
+import net.java_rin.KillSound.hooks.implementation.VaultPermissionHook;
 import net.java_rin.KillSound.listeners.InventoryListeners;
 import net.java_rin.KillSound.listeners.PlayerListeners;
 import net.java_rin.KillSound.manager.ConfigManager;
@@ -19,14 +20,11 @@ public class KillSound extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        getServer().getConsoleSender().sendMessage("┏┓┏━┓━━┏┓━┏┓━┏━━━┓━━━━━━━━━━━━━━┏┓");
-        getServer().getConsoleSender().sendMessage("┃┃┃┏┛━━┃┃━┃┃━┃┏━┓┃━━━━━━━━━━━━━━┃┃");
-        getServer().getConsoleSender().sendMessage("┃┗┛┛━┏┓┃┃━┃┃━┃┗━━┓┏━━┓┏┓┏┓┏━┓━┏━┛┃");
-        getServer().getConsoleSender().sendMessage("┃┏┓┃━┣┫┃┃━┃┃━┗━━┓┃┃┏┓┃┃┃┃┃┃┏┓┓┃┏┓┃    KillSound v1.0.0");
-        getServer().getConsoleSender().sendMessage("┃┃┃┗┓┃┃┃┗┓┃┗┓┃┗━┛┃┃┗┛┃┃┗┛┃┃┃┃┃┃┗┛┃    by Java_Rin");
-        getServer().getConsoleSender().sendMessage("┗┛┗━┛┗┛┗━┛┗━┛┗━━━┛┗━━┛┗━━┛┗┛┗┛┗━━┛");
-        getServer().getConsoleSender().sendMessage("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        getServer().getConsoleSender().sendMessage("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        getServer().getConsoleSender().sendMessage("------------------------------");
+        getServer().getConsoleSender().sendMessage("|       KillSound Plugin      |");
+        getServer().getConsoleSender().sendMessage("|          by Java_Rin        |");
+        getServer().getConsoleSender().sendMessage("------------------------------");
+        VaultPermissionHook.init();
         ConfigManager.loadConfig();
         this.generatePlayerDataFolder();
         this.registerEvents();

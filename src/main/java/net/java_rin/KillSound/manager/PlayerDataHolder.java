@@ -1,7 +1,7 @@
 package net.java_rin.KillSound.manager;
 
 import net.java_rin.KillSound.KillSound;
-import net.java_rin.KillSound.sounds.Sound;
+import net.java_rin.KillSound.sounds.Disc;
 import net.java_rin.KillSound.utilities.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -29,12 +29,9 @@ public class PlayerDataHolder {
      * @param minute The interval in minutes.
      */
     public static void autoSave(int minute) {
-        taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask (KillSound.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-                save();
-                load();
-            }
+        taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask (KillSound.getInstance(), () -> {
+            save();
+            load();
         },ConfigManager.AUTOSAVE_INTERVAL * 60 * 20L, minute * 60 * 20L);
     }
 
@@ -86,9 +83,9 @@ public class PlayerDataHolder {
 
             boolean enabled = raw_data.getBoolean("enabled");
             String soundString = raw_data.getString("sound");
-            Sound sound = getSound(soundString);
+            Disc disc = getSound(soundString);
 
-            PlayerData data = new PlayerData(player, sound, enabled);
+            PlayerData data = new PlayerData(player, disc, enabled);
             add(data);
         }
         Message.log("Loaded player data successfully!");
@@ -144,11 +141,11 @@ public class PlayerDataHolder {
      * @param soundString The string representation of the sound.
      * @return The corresponding Sound enum value.
      */
-    private static Sound getSound(String soundString) {
+    private static Disc getSound(String soundString) {
         try {
-            return Sound.valueOf(soundString);
+            return Disc.valueOf(soundString);
         } catch (IllegalArgumentException e) {
-            return Sound.NONE;
+            return Disc.NONE;
         }
     }
 }

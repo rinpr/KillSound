@@ -3,6 +3,8 @@ version: 1.0
 author: Java_Rin
 main: net.java_rin.KillSound.KillSound
 api-version: 1.7.10
+softdepend:
+  - Vault
 commands:
   killsound:
     description: Main command for KillSound

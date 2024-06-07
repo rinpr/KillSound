@@ -1,6 +1,6 @@
 package net.java_rin.KillSound.sounds;
 
-public enum Sound {
+public enum Disc {
     NONE("NONE"),
     ONE("ONE"),
     TWO("TWO"),
@@ -12,7 +12,7 @@ public enum Sound {
 
     private final String stringValue;
 
-    Sound(String stringValue) {
+    Disc(String stringValue) {
         this.stringValue = stringValue;
     }
 
