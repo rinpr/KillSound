@@ -127,6 +127,22 @@ public class PlayerDataHolder {
      */
     public static PlayerData getPlayerData(Player player) {
         if (!playerData.containsKey(player.getName())) {
+            PlayerData data = new PlayerData(Bukkit.getOfflinePlayer(player.getUniqueId()));
+            add(data);
+            return data;
+        } else {
+            return playerData.get(player.getName());
+        }
+    }
+
+    /**
+     * Retrieves player data for a specific player.
+     *
+     * @param player The offline player to retrieve data for.
+     * @return The player's data.
+     */
+    public static PlayerData getPlayerData(OfflinePlayer player) {
+        if (!playerData.containsKey(player.getName())) {
             PlayerData data = new PlayerData(player);
             add(data);
             return data;
