@@ -19,9 +19,9 @@ public class SoundGUI {
         this.playerData = playerData;
         this.player = playerData.getPlayer().getPlayer();
         this.inventory = Bukkit.createInventory(this.player, GUI_COLUMN * 9, ChatColor.translateAlternateColorCodes('&', ConfigManager.GUI_NAME));
-        setEnable();
-        setDisc();
-        setAvailabilityDisc();
+        this.setEnable();
+        this.setDisc();
+        this.setAvailabilityDisc();
     }
 
     public void open() {
