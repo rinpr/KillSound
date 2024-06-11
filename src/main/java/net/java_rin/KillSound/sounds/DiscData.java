@@ -24,6 +24,7 @@ public class DiscData {
      * @param player2 The victim player.
      */
     public static void playKillSound(Player player, Player player2) {
+        if (!player.isOnline() && !player2.isOnline()) return;
         PlayerData playerData = PlayerDataHolder.getPlayerData(player);
         if (!playerData.isEnabled()) return;
         Disc disc = playerData.getSound();
