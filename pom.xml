@@ -6,7 +6,7 @@
 
     <groupId>net.java_rin</groupId>
     <artifactId>KillSound</artifactId>
-    <version>1.1</version>
+    <version>1.1.1-beta-1.0</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -33,7 +33,7 @@
             <artifactId>BukkitAPI</artifactId>
             <version>1.7.10</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/cauldron-1.7.10-1.1388.1.0-server.jar</systemPath>
+            <systemPath>${project.basedir}/lib/craftbukkit-1.7.10-R0.1-20140808.005431-8.jar</systemPath>
         </dependency>
     </dependencies>
 
