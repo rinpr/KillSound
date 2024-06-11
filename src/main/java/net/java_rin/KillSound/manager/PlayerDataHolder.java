@@ -111,6 +111,15 @@ public class PlayerDataHolder {
     }
 
     /**
+     * Updates player data from the manager.
+     *
+     * @param data The player data to update.
+     */
+    public static void update(PlayerData data) {
+        playerData.put(data.getName(), data);
+    }
+
+    /**
      * Removes player data from the manager.
      *
      * @param data The player data to remove.
